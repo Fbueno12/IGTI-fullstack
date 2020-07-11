@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desafio Color Picker</title>
+
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+
+<body class="container">
+  <header>
+    <div class="logotype"></div>
+  </header>
+  <main>
+    <div class="slider-container sl-red">
+      <label for="rg-red">Vermelho</label>
+
+      <div class="range-item">
+        <input type="range" min="0" max="255" value="0" id="rg-red" onchange="pickColor()">
+        <input type="text" value="0" class="range-value" disabled>
+      </div>
+    </div>
+    <div class="slider-container sl-green">
+      <label for="rg-green">Verde</label>
+
+      <div class="range-item">
+        <input type="range" min="0" max="255" value="0" id="rg-green" onchange="pickColor()">
+        <input type="text" value="0" class="range-value" disabled>
+      </div>
+    </div>
+    <div class="slider-container sr-blue">
+      <label for="rg-blue">Azul</label>
+
+      <div class="range-item">
+        <input type="range" min="0" max="255" value="0" id="rg-blue" onchange="pickColor()">
+        <input type="text" value="0" class="range-value" disabled>
+      </div>
+    </div>
+  </main>
+
+  <aside>
+    <div id="color-picked"></div>
+    <div id="color-hex">
+      <p>#000000</p>
+    </div>
+  </aside>
+
+  <footer>
+    <div>
+      &copy; Felipe Ferreira Bueno
+    </div>
+    <div class="icons">
+      <a href="https://github.com/Fbueno12" target="_BLANK">
+        <div class="icon github"></div>
+      </a>
+      <a href="https://www.linkedin.com/in/fferreirabueno/" target="_BLANK">
+        <div class="icon linkedin"></div>
+      </a>
+    </div>
+
+  </footer>
+  <script src="./assets/script.js"></script>
+</body>
+
+</html>

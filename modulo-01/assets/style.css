@@ -1,0 +1,107 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 10vh 75vh 15vh;
+}
+.container header {
+  display: flex;
+  grid-column: 1/3;
+  grid-row: 1/2;
+  align-content: center;
+  background-color: #00AFA2;
+}
+header .logotype {
+  background: url('../assets/images/igti-logo.png') no-repeat;
+  background-size: 90%;
+  background-position: center;
+  width: 130px;
+  height: 90%;
+  margin-left: 5px;
+}
+
+.container main {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+} main .slider-container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+} .slider-container label {
+  margin-bottom: 10px;
+}
+
+.range-item .range-value {
+  width: 50px;
+} .range-item input[type="range"] {
+  -webkit-appearance: none;
+  background: #ededed;
+  border-radius: 10px;
+  height: 5px;
+} .range-item input[type="range"]::-webkit-slider-thumb, 
+  input[type="range"]::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: #00AFA2;
+  cursor: pointer;
+}
+
+.container aside {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} aside #color-hex {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  padding: 5px;
+  background-color: #fff;
+  border: 1px solid #666; 
+} aside #color-picked {
+  width: 250px;
+  height: 250px;
+  background-color: #000;
+  border-radius: 50%;
+  margin-bottom: 50px;
+}
+
+.container footer {
+  background: #00AFA2;
+  grid-column: 1/3;
+  grid-row: 3/4;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #fff;
+} footer .icons {
+  display: flex;
+  margin: 5px 0;
+} .icons .icon {
+  width: 50px;
+  height: 50px;
+} .icon.github {
+  background: url(./images/github.svg) no-repeat;
+  background-size: cover;
+} .icon.linkedin {
+  background: url(./images/linkedin.svg) no-repeat;
+  background-size: cover;
+} .icons .icon:first-child {
+  margin-right: 10px;
+}
