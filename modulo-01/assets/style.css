@@ -63,14 +63,11 @@ header .logotype {
 .container aside {
   grid-column: 2/3;
   grid-row: 2/3;
-  position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 } aside #color-hex {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
   padding: 5px;
   background-color: #fff;
   border: 1px solid #666; 
