@@ -8,7 +8,6 @@
 .container {
   display: grid;
   width: 100%;
-  min-width: 450px;
   height: 100%;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 10vh 75vh 15vh;
