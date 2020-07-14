@@ -133,4 +133,10 @@ header .logotype {
   aside #color-picked {
     margin-bottom: 15px;
   }
+
+  .container footer {
+    position:absolute;
+    bottom:0;
+    width: 100%;
+  }
 }
