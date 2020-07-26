@@ -15,7 +15,9 @@ const api = {
   }
 }
 
-window.addEventListener('load', async () => {
+window.addEventListener('load', start());
+
+async function start() {
   const users = await api.get('/?seed=javascript&results=100&nat=BR&noinfo');
 
   searchInput.addEventListener('keyup', (event) => {
@@ -31,8 +33,7 @@ window.addEventListener('load', async () => {
   });
 
   btnSearch.addEventListener('click', () => findUsers(searchInput.value, users));
-  
-})
+}
 
 function findUsers(text, users) {
   const body = document.querySelector('.content');
