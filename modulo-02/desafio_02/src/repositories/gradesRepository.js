@@ -1,19 +1,22 @@
 import { promises as fs } from "fs";
+import database from "../database/index.js";
 const {readFile, writeFile} = fs;
 
 const gradesRepository = {
   async findAll() {
-    return JSON.parse(await readFile("./public/grades.json"));
+    const data = await database.read();
+    return data;
   },
   
   async findById(id) {
-    const data = JSON.parse(await readFile("./public/grades.json"));
+    const data = await database.read();
+
     const grade = data.grades.find(grade => grade.id == id);
     return grade;
   },
 
   async findByStudent(student) {
-    const data = JSON.parse(await readFile("./public/grades.json"));
+    const data = await database.read();
     const studentGrade = data.grades.filter(grade => grade.student == student);
 
     return studentGrade;
@@ -27,8 +30,7 @@ const gradesRepository = {
   },
 
   async create({student, subject, type, value}) {
-    let grades = await readFile("./public/grades.json");
-    grades = JSON.parse(grades);
+    let grades = await database.read();
 
     const obj = {
       id: grades.nextId,
@@ -43,17 +45,17 @@ const gradesRepository = {
   },
 
   async save(grade) {
-    const data = JSON.parse(await readFile("./public/grades.json"));
+    const data = await database.read();
 
     data.nextId++;
     data.grades.push(grade);
 
-    await writeFile('./public/grades.json', JSON.stringify(data));
+    await database.save(data);
     return grade;
   },
 
   async update(grade, id) {
-    const data = JSON.parse(await readFile("./public/grades.json"));
+    const data = await database.read();
 
     const updated = data.grades.map(oldGrade => {
       if(oldGrade.id == id) {
@@ -66,15 +68,15 @@ const gradesRepository = {
     });
     data.grades = updated;
 
-    await writeFile("./public/grades.json", JSON.stringify(data));
+    await database.save(data);
     return await this.findById(id);
   },
 
   async delete(id) {
-    const data = JSON.parse(await readFile("./public/grades.json"));
+    const data = await database.read();
     data.grades = data.grades.filter(grade => grade.id != id);
 
-    await writeFile("./public/grades.json", JSON.stringify(data));
+    await database.save(data);
   }
 }
 

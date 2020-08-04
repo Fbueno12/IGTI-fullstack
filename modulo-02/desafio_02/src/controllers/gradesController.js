@@ -1,39 +1,30 @@
 import gradesRepository from "../repositories/gradesRepository.js";
+import createGradesService from "../services/createGradesService.js";
+import updateGradeService from "../services/updateGradeService.js";
+import deleteGradeService from "../services/deleteGradeService.js";
+import averageGradeService from "../services/averageGradeService.js";
+import topThreeGradeService from "../services/topThreeGradeService.js";
 
 const gradesController = {
-  async index(request, response) {
+  async index(_, response) {
     return response.json(await gradesRepository.findAll());
   },
 
   async store(request, response) {
-    const grade = await gradesRepository.create(request.body);
+    const grade = await createGradesService.execute(request.body);
 
-    const newGrade = await gradesRepository.save(grade);
-    response.json(newGrade);
+    response.json(grade);
   },
   async update(request, response) {
     const { id } = request.params;
 
-    const gradeExists = await gradesRepository.findById(id);
-    if (!gradeExists) {
-      return response
-        .status(400)
-        .json({ error: `Grade with id ${id} not found` });
-    }
-
-    const updated = await gradesRepository.update(request.body, id);
+    const updated = await updateGradeService.execute(request.body, id);
     response.json(updated);
   },
   async delete(request, response) {
     const { id } = request.params;
-    const gradeExists = await gradesRepository.findById(id);
-    if (!gradeExists) {
-      return response
-        .status(400)
-        .json({ error: `Grade with id ${id} not found` });
-    }
 
-    await gradesRepository.delete(id);
+    await deleteGradeService.execute(id);
     response.send();
   },
 
@@ -45,29 +36,15 @@ const gradesController = {
   async average(request, response) {
     const { subject, type } = request.query;
 
-    const grades = await gradesRepository.findBySubject(subject);
-
-    const gradesType = grades.filter((grade) => grade.type == type);
-
-    const result = {
-      grades: gradesType,
-      grade_average:
-        gradesType.reduce((acc, { value }) => acc + value, 0) /
-        gradesType.length,
-    };
-
+    const result = await averageGradeService.execute(subject, type);
     return response.json(result);
   },
 
   async topThree(request, response) {
     const { subject, type } = request.query;
-    const grades = await gradesRepository.findBySubject(subject);
-    const gradesType = grades
-                          .filter((grade) => grade.type == type)
-                          .sort((a, b) => b.value - a.value)
-                          .slice(0,3);
 
-    return response.json(gradesType);
+    const result = await topThreeGradeService.execute(subject, type);
+    return response.json(result);
   },
 };
 
