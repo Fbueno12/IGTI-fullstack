@@ -55,7 +55,7 @@ function discountINSS(number) {
 
   if(number > 6101.06) {
     discount = 713.10;
-    percent = 9.03;
+    percent = round((100 * discount) / number);
     return {formatted: `${formatter.format(discount)} (${percent}%)`, discount, percent};
   }
   
