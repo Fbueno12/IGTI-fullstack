@@ -1,0 +1,33 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 650px;
+  max-height: 500px;
+  padding: 25px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+}
+.form-input label {
+  cursor: pointer;
+}
+.form-input input {
+  width: 100%;
+  padding: 15px 5px;
+  background: transparent;
+  margin-bottom: 10px;
+  border: none;
+  border-bottom: 1px solid #666;
+  transition: 300ms;
+}
+.form-input input:focus {
+  border-color: green;
+  background-color: rgba(0, 255, 0, 0.226);
+  border-radius: 8px;
+}
+
+.calculations {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+  margin-top: 20px;
+}

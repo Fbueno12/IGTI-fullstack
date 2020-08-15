@@ -1,5 +1,5 @@
 import stateModule from './src/modules/stateModule.js';
-import {getUF} from './src/modules/ReaderModule.js';
+import { getUF } from './src/modules/ReaderModule.js';
 
 init();
 
